@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Observer, Subject, BehaviorSubject } from 'rxjs';
 
 import { map } from "rxjs/operators";
-import { Project } from './project';
+import { Project } from '../models/project';
+
 
 
 @Injectable({

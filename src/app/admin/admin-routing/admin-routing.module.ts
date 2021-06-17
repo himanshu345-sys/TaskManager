@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateGuardService } from 'src/app/can-activate-guard.service';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { ProjectsComponent } from '../projects/projects.component';
-import { ProjectDetailsComponent } from '../project-details/project-details.component';
+import { CanActivateGuardService } from 'src/app/guards/can-activate-guard.service';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
+import { ProjectDetailsComponent } from '../components/project-details/project-details.component';
+import { ProjectsComponent } from '../components/projects/projects.component';
 
 const routes:Routes = [
   {
-    path:"admin",
+    path:"",
     canActivate: [ CanActivateGuardService ],
     data: {expectedRole: "Admin"} 
     ,children:[

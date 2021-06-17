@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { LoginViewModel } from './login-view-model';
-import { SignUpViewModel } from './sign-up-view-model';
+import { LoginViewModel } from '../models/login-view-model';
+import { SignUpViewModel } from '../models/sign-up-view-model';
+
 
 
 

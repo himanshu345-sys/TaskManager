@@ -31,6 +31,11 @@ const routes: Routes = [
     data:{linkIndex:1} 
   },
   
+  { 
+    path: "admin", 
+    loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule) 
+  }
+  
 ];
 
 @NgModule({

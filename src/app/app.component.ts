@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { fadeAnimations,slideUpAnimation,zoomLeftAnimation,zoomUpAnimation,slideLeftOrRightAnimation } from './animations/my-animations';
+import { slideLeftOrRightAnimation } from './animations/my-animations';
 import { LoginService } from './services/login.service';
 import { RouterLoggerService } from './services/router-logger.service';
 

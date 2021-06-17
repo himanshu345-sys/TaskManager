@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TasksComponent } from 'src/app/employee/components/tasks/tasks.component';
-import { CanActivateGuardService } from 'src/app/can-activate-guard.service';
+import { CanActivateGuardService } from 'src/app/guards/can-activate-guard.service';
+
 
 
 

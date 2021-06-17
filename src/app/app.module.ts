@@ -1,6 +1,5 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
@@ -15,6 +14,8 @@ import { AlertDirective } from './directives/alert.directive';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
 import { JwtUnAuthorizedInterceptorService } from './interceptors/jwt-un-authorized-interceptor.service';
+import { SharedModule } from './shared/shared.module';
+import { AboutComponent } from './admin/components/about/about.component';
 
 
 
@@ -22,7 +23,8 @@ import { JwtUnAuthorizedInterceptorService } from './interceptors/jwt-un-authori
 
 @NgModule({
   declarations: 
-  [ AppComponent, 
+  [ AppComponent,
+    AboutComponent, 
     LoginComponent, 
     SignUpComponent, 
     AlertDirective
@@ -30,12 +32,9 @@ import { JwtUnAuthorizedInterceptorService } from './interceptors/jwt-un-authori
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    SharedModule,
     AppRoutingModule,
-    HttpClientModule,
-    AdminModule,
     EmployeeModule,
-    FormsModule,
-    ReactiveFormsModule,
     JwtModule.forRoot( {
       config: {
         tokenGetter: () => {
