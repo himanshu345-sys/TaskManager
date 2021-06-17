@@ -8,6 +8,11 @@ import { ProjectComponent } from './components/project/project.component';
 import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 import { DashboardService } from '../services/dashboard.service';
 import { SharedModule } from '../shared/shared.module';
+import { CountriesComponent } from './components/countries/countries.component';
+import { ClientLocationsComponent } from './components/client-locations/client-locations.component';
+import { TaskPrioritiesComponent } from './components/task-priorities/task-priorities.component';
+import { TaskStatusComponent } from './components/task-status/task-status.component';
+import { MastersComponent } from './components/masters/masters.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { SharedModule } from '../shared/shared.module';
     ProjectsComponent,
     ProjectComponent,
     ProjectDetailsComponent,
-    CheckBoxPrinterComponent
+    CheckBoxPrinterComponent,
+    CountriesComponent,
+    ClientLocationsComponent,
+    TaskPrioritiesComponent,
+    TaskStatusComponent,
+    MastersComponent
     ],
   imports: [AdminRoutingModule,SharedModule],
   exports:[
@@ -25,7 +35,12 @@ import { SharedModule } from '../shared/shared.module';
     MyProfileComponent,
     ProjectsComponent,
     ProjectDetailsComponent],
-  providers:[DashboardService]
+  providers:[DashboardService],
+  entryComponents:[
+    CountriesComponent,
+    ClientLocationsComponent,
+    TaskPrioritiesComponent,
+    TaskStatusComponent]
 })
 export class AdminModule 
 {

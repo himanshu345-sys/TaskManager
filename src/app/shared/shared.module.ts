@@ -7,6 +7,7 @@ import { PagingPipe } from '../pipes/paging.pipe';
 import { UniqueProjectIdDirective } from '../directives/unique-project-id.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentLoaderDirective } from '../directives/component-loader.directive';
 
 
 
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     TeamSizeValidatorDirective,
     ClientLocationStatusValidatorDirective,
     UniqueProjectIdDirective,
+    ComponentLoaderDirective,
     FilterPipe,
     PagingPipe
   ],
@@ -33,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     TeamSizeValidatorDirective,
     ClientLocationStatusValidatorDirective,
     UniqueProjectIdDirective,
+    ComponentLoaderDirective,
     FilterPipe,
     PagingPipe
   ]
