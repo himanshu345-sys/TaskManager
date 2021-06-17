@@ -11,10 +11,10 @@ import { AppComponent } from './app.component';
 
 import { EmployeeModule } from './employee/employee.module';
 import { LoginComponent } from './components/login/login.component';
-import { AlertDirective } from './alert.directive';
-import { JwtInterceptorService } from './jwt-interceptor.service';
-import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-interceptor.service';
+import { AlertDirective } from './directives/alert.directive';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
+import { JwtUnAuthorizedInterceptorService } from './interceptors/jwt-un-authorized-interceptor.service';
 
 
 
