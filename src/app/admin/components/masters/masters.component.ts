@@ -30,30 +30,51 @@ export class MastersComponent implements OnInit
   ngOnInit(): void {
   }
 
-  menuItemClick(clickedMasterMenuItem:any)
+  menuItemClick(clickedMasterMenuItem: any)
   {
+    //console.log(clickedMasterMenuItem);
     this.activeItem = clickedMasterMenuItem.itemName;
-    let matchingTabs = this.tabs.filter((tab) =>{
+
+    let matchingTabs = this.tabs.filter((tab) =>
+    {
       return tab.itemName == clickedMasterMenuItem.itemName
     });
-    if(matchingTabs.length == 0)
+
+    if (matchingTabs.length == 0)
     {
       this.tabs.push({
-        tabIndex:this.tabs.length,
-        itemName:clickedMasterMenuItem.itemName,
-        displayName:clickedMasterMenuItem.displayName
+        tabIndex: this.tabs.length,
+        itemName: clickedMasterMenuItem.itemName,
+        displayName: clickedMasterMenuItem.displayName
       });
 
-      setTimeout(() =>{
+      setTimeout(() => {
         var componentLoadersArray = this.componentLoaders.toArray();
-        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(clickedMasterMenuItem.component); 
+        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(clickedMasterMenuItem.component);
 
-        var viewContainerRef = componentLoadersArray[this.tabs.length - 1].viewContainerRef;
-        viewContainerRef.createComponent(componentFactory);
+        var viewContainterRef = componentLoadersArray[this.tabs.length - 1].viewContainerRef;
 
-      },100);
+        var componentRef = viewContainterRef.createComponent(componentFactory);
+
+        this.tabs[this.tabs.length - 1].viewContainerRef = viewContainterRef;
+
+        if (clickedMasterMenuItem.component.name == "CountriesComponent")
+        {
+          var componentInstance = componentRef.instance as CountriesComponent;
+        }
+      }, 100);
     }
+  }
 
+  onCloseClick(clickedTab:any)
+  {
+    clickedTab.viewContainerRef.remove();
+    this.tabs.splice(this.tabs.indexOf(clickedTab),1);
+
+    if(this.tabs.length > 0)
+    {
+      this.activeItem = this.tabs[0].itemName;
+    }
   }
 
 }

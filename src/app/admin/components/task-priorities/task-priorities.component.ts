@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-priorities.component.scss']
 })
 export class TaskPrioritiesComponent implements OnInit {
-
+  message:string = null;
   constructor() { }
 
   ngOnInit(): void {

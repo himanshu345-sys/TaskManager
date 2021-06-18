@@ -8,6 +8,7 @@ import { UniqueProjectIdDirective } from '../directives/unique-project-id.direct
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentLoaderDirective } from '../directives/component-loader.directive';
+import { SortPipe } from '../pipes/sort.pipe';
 
 
 
@@ -18,7 +19,8 @@ import { ComponentLoaderDirective } from '../directives/component-loader.directi
     UniqueProjectIdDirective,
     ComponentLoaderDirective,
     FilterPipe,
-    PagingPipe
+    PagingPipe,
+    SortPipe
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { ComponentLoaderDirective } from '../directives/component-loader.directi
     UniqueProjectIdDirective,
     ComponentLoaderDirective,
     FilterPipe,
-    PagingPipe
+    PagingPipe,
+    SortPipe
   ]
 })
 export class SharedModule { }

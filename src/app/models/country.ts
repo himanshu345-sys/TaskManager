@@ -3,9 +3,9 @@ export class Country
     countryID:number;
     countryName:string;
 
-    constructor(countryIDParam:number,countryNameParam:string)
+    constructor()
     {
-        this.countryID = countryIDParam;
-        this.countryName = countryNameParam;
+        this.countryID = null;
+        this.countryName = null;
     }
 }
