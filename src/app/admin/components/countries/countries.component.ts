@@ -43,7 +43,8 @@ export class CountriesComponent implements OnInit
   sortOrder:string = "ASC";
 
   //Constructor
-  constructor(private countriesService: CountriesService, private formBuilder: FormBuilder)
+  constructor(private countriesService: CountriesService, 
+    private formBuilder: FormBuilder)
   {
   }
 

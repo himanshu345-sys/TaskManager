@@ -62,6 +62,8 @@ export class MastersComponent implements OnInit
         {
           var componentInstance = componentRef.instance as CountriesComponent;
         }
+
+        
       }, 100);
     }
   }
