@@ -202,4 +202,9 @@ export class TaskPrioritiesComponent implements OnInit
       });
   }
 
+  onSearchTextChange(event)
+  {
+    this.calculateNoOfPages();
+  }
+
 }

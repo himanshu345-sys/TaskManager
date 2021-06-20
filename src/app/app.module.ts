@@ -21,14 +21,16 @@ import { AboutComponent } from './admin/components/about/about.component';
 
 
 
+
+
 @NgModule({
   declarations: 
   [ AppComponent,
     AboutComponent, 
     LoginComponent, 
     SignUpComponent, 
-    AlertDirective
-    ],
+    AlertDirective  
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

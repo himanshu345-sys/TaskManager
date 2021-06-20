@@ -1,68 +1,66 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { CountriesService } from '../../services/countries.service';
+import { Country } from '../../models/country';
+import { CustomValidatorsService } from '../../services/custom-validators.service';
+import { SignUpViewModel } from '../../models/sign-up-view-model';
+import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { CanComponentDeactivate } from 'src/app/guards/can-deactivate-guard.service';
-import { Country } from 'src/app/models/country';
-import { SignUpViewModel } from 'src/app/models/sign-up-view-model';
-import { CountriesService } from 'src/app/services/countries.service';
-import { CustomValidatorsService } from 'src/app/services/custom-validators.service';
-import { LoginService } from 'src/app/services/login.service';
-
+import { CanComponentDeactivate } from '../../guards/can-deactivate-guard.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit,CanComponentDeactivate
+export class SignUpComponent implements OnInit, CanComponentDeactivate
 {
   signUpForm: FormGroup;
-  genders = ["male","female"];
-  countries:Country[] = [];
-  registerError:string = null;
+  genders = ["male", "female"];
+  countries: Country[] = [];
+  registerError: string = null;
 
-  canLeave:boolean = true;
+  canLeave: boolean = true;
 
-  constructor(private countriesService: CountriesService,
-    private formBuilder:FormBuilder,
-    private customValidatorsService:CustomValidatorsService,
-    private loginService:LoginService,
-    private router:Router) 
-  { 
-
+  constructor(private countriesService: CountriesService, private formBuilder: FormBuilder, 
+    private customValidatorsService: CustomValidatorsService, private loginService: LoginService, private router: Router)
+  {
   }
 
-  ngOnInit(): 
-  void 
+  ngOnInit()
   {
-    this.countriesService.getCountries().subscribe((response) =>{
+    this.countriesService.getCountries().subscribe((response) =>
+    {
       this.countries = response;
-    })
-  
-    this.signUpForm = this.formBuilder.group({
-      personName:this.formBuilder.group({
-        firstName:[null,[Validators.required,Validators.minLength(2)]],
-        lastName:[null,[Validators.required,Validators.minLength(2)]],
-      }),
-      email:[null,[Validators.required,Validators.email],[this.customValidatorsService.DuplicateEmailValidator()],{updateOn:'blur'}],
-      mobile:[null,[Validators.required,Validators.pattern(/^[789]\d{9}$/)]],
-      dateOfBirth:[null,[Validators.required,this.customValidatorsService.minimumAgeValidator(18)]],
-      password:[null,[Validators.required]],
-      confirmpassword:[null,[Validators.required]],
-      gender:[null,[Validators.required]],
-      countryID:[null,[Validators.required]],
-      receiveNewsLetter:null,
-      skills: this.formBuilder.array([])
-    },{
-      validators:[
-        this.customValidatorsService.compareValidator("confirmpassword","password")
-      ]
     });
 
-    this.signUpForm.valueChanges.subscribe(
-      (value) => {
-        this.canLeave = false;
+    this.signUpForm = this.formBuilder.group({
+      personName: this.formBuilder.group({
+        firstName: [null, [Validators.required, Validators.minLength(2)]],
+        lastName: [null, [Validators.required, Validators.minLength(2)]],
+      }),
+
+      email: [null, [Validators.required, Validators.email], [ this.customValidatorsService.DuplicateEmailValidator() ], {updateOn: 'blur'}],
+      mobile: [null, [Validators.required, Validators.pattern(/^[789]\d{9}$/)]],
+      dateOfBirth: [null, [Validators.required, this.customValidatorsService.minimumAgeValidator(18)]],
+      password: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
+      gender: [null, [Validators.required]],
+      countryID: [null, [Validators.required]],
+      receiveNewsLetters: [null],
+      skills: this.formBuilder.array([])
+    },
+      {
+        validators: [
+          this.customValidatorsService.compareValidator("confirmPassword", "password")
+        ]
       });
+
+    this.signUpForm.valueChanges.subscribe((value) =>
+    {
+      //console.log(value);
+      this.canLeave = false;
+    });
   }
 
   get skillsArray()
@@ -74,19 +72,22 @@ export class SignUpComponent implements OnInit,CanComponentDeactivate
   {
     //Display current form value
     this.signUpForm["submitted"] = true;
-    if(this.signUpForm.valid)
+    console.log(this.signUpForm);
+
+    if (this.signUpForm.valid)
     {
       var signUpViewModel = this.signUpForm.value as SignUpViewModel;
       this.loginService.Register(signUpViewModel).subscribe(
-        (response) => {
+        (response) =>
+        {
           this.canLeave = true;
-          this.router.navigate([ "/employee","tasks" ]);
+          this.router.navigate(["/employee", "tasks"]);
         },
-        (error) => {
+        (error) =>
+        {
           console.log(error);
           this.registerError = "Unable to submit";
-        }
-      )
+        });
     }
 
     //setValue
@@ -126,11 +127,11 @@ export class SignUpComponent implements OnInit,CanComponentDeactivate
       level: new FormControl(null, [Validators.required])
     });
 
-    (<FormArray>this.signUpForm.get("skills") as FormArray).push(formGroup);
+    (<FormArray>this.signUpForm.get("skills")).push(formGroup);
   }
 
-  onRemoveClick(index:number)
+  onRemoveClick(index: number)
   {
-    (<FormArray>this.signUpForm.get("skills") as FormArray).removeAt(index);
+    (<FormArray>this.signUpForm.get("skills")).removeAt(index);
   }
 }

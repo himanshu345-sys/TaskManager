@@ -20,16 +20,16 @@ export class TaskPriorityService {
 
   insertTaskPriority(newTaskPriority:TaskPriority):Observable<TaskPriority>
   {
-    return this.httpClient.post<TaskPriority>("/apiapi/taskpriorities",newTaskPriority,{responseType:"json"});
+    return this.httpClient.post<TaskPriority>("/api/taskpriorities",newTaskPriority,{responseType:"json"});
   }
 
   updateTaskPriority(existingTaskPriority:TaskPriority):Observable<TaskPriority>
   {
-    return this.httpClient.put<TaskPriority>("api/api/taskpriorities",existingTaskPriority,{responseType:"json"});
+    return this.httpClient.put<TaskPriority>("/api/taskpriorities",existingTaskPriority,{responseType:"json"});
   }
 
   deleteTaskPriority(TaskPriorityID: number):Observable<string>
   {
-    return this.httpClient.delete<string>("api/api/taskpriorities?TaskPriorityID=" + TaskPriorityID);
+    return this.httpClient.delete<string>("/api/taskpriorities?TaskPriorityID=" + TaskPriorityID);
   }
 }
